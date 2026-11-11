@@ -116,9 +116,52 @@
 # print(c)
 
 
-num=[-10,3,-2,8,-5]
-print(sorted(num))
-rs=sorted(num,key=lambda x: abs(x))
-print(rs)
+# num=[-10,3,-2,8,-5]
+# print(sorted(num))
+# rs=sorted(num,key=lambda x: abs(x))
+# print(rs)
 
 
+def calculate_average(measurements):
+    summ=0
+    for i in measurements:
+        summ+=i
+    return summ/len(measurements)
+def find_minimum(measurements):
+    m=measurements[0]
+    for i in measurements:
+        if i<m:
+            m=i
+    return m
+def find_maximum(measurements):
+    m=measurements[0]
+    for i in measurements:
+        if i>m:
+            m=i
+    return m
+def count_above_average(measurements):
+    average=calculate_average(measurements)
+    cnt=0
+    for i in measurements:
+        if i>average:
+            cnt+=1
+    return cnt
+def find_value(measurements, tg):
+    for i in range(len(measurements)):
+        if measurements[i]==tg:
+            return i
+    return -1
+def analyze_measurements(measurements):
+    minimum=find_minimum(measurements)
+    maximum=find_maximum(measurements)
+    average=calculate_average(measurements)
+    return minimum,maximum,average
+measurements=[13,14,11,9,15,64,7,4,10,22]
+minimum,maximum,average=analyze_measurements(measurements)
+tg=float(input("Введите число для поиска: "))
+print("Количество измерений:", len(measurements))
+print("Минимальное значение:", minimum)
+print("Максимальное значение:", maximum)
+print("Среднее значение:", average)
+print("Количество значений выше среднего:", count_above_average(measurements))
+print("Индекс числа заданного для поиска", find_value(measurements,tg))
